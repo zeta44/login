@@ -1,0 +1,128 @@
+<%- include('../partials/header'); %>
+
+<main>
+    <section class="container my-5">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6 text-left">
+                        <h1 id="consulta">Lista dos Livros</h1>
+                    </div>
+                    <div class="col-6">
+                        <form class="d-flex" action="/pesquisa" method="GET">
+
+                            <select class="form-control" name="campo" id="campo">
+                                <option value="all" selected>Todos</option>
+                                <option value="titulo">Título</option>
+                                <option value="autor">Autor</option>
+                                <option value="editora">Editora</option>
+
+                            </select>
+
+
+                            <input type="text" class="form-control" placeholder="Pesquisar" name="sh" required />
+
+                            <button class="btn btn-light d-inline-flex" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg>
+                            </button>
+
+                        </form>
+                    </div>
+
+                    
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Autor</th>
+                                <th>Editora</th>
+                                <th>Ano</th>
+                                <th class="text-center">Quantidade</th>
+                                <% if(locals.user.classe === "admin") { %>
+                                <th>Ações</th>
+                                <% } %> 
+                            </tr>
+                        </thead>
+                        <tbody id="tabela">
+                            <% item.forEach(function(livro){ %>
+                                <tr>
+                                    <td>
+                                        <%= livro.titulo %>
+                                    </td>
+                                    <td>
+                                        <%= livro.autor %>
+                                    </td>
+                                    <td>
+                                        <%= livro.editora %>
+                                    </td>
+                                    <td>
+                                        <%= livro.ano %>
+                                    </td>
+                                    <td class="text-center">
+                                        <%= livro.quantidade %>
+                                    </td>
+                                    <% if(locals.user.classe === "admin") { %>
+                                    <td>
+                                        
+                                        <a class="btn btn-warning" href="editar/<%=livro._id %>"><i
+                                                class="ico icofont-edit"></i></a>
+                                        <!-- Botão para acionar modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#ExemploModalCentralizado">
+                                            <i class="ico icofont-bin"></i>
+                                        </button>
+                                        <% } %> 
+                                        
+                                    </td>
+                                </tr>
+                                <!-- Modal -->
+                                <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog"
+                                    aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="TituloModalCentralizado">Atenção
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Fechar">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Confirma a exclusão do título <%= livro.titulo %>?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Fechar</button>
+                                                <a class="btn btn-danger"
+                                                    href="/deletar/<%=livro._id %>">Deletar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <% }) %>
+                        </tbody>
+                    </table>
+                   
+
+
+                    <div id="alerta" class="col-12 alert alert-info" style="display: none;">
+                        <h1 class="display-5 ">
+                            Lista vazia!
+                        </h1>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<%- include('../partials/footer'); %>

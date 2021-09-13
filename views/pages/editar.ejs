@@ -1,0 +1,68 @@
+<%- include('../partials/header'); %>
+
+<main>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col">
+                <h1>Editar Livros</h1>
+                <% item.forEach(function(livro){ %>
+                    <form action="/update" method="POST">
+                        <input class="form-control" type="hidden" readonly id="_id" name="_id"
+                            value="<%= livro._id %>">
+                        <div class="form-group">
+                            <label for="titulo">Título</label>
+                            <input class="form-control" type="text" id="titulo" name="titulo"
+                                placeholder="Título do livro" required value="<%= livro.titulo %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="autor">Autor</label>
+                            <input class="form-control" type="text" id="autor" name="autor"
+                                placeholder="Autor do livro" required value="<%= livro.autor %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="editora">Editora</label>
+                            <input class="form-control" type="text" id="editora" name="editora"
+                                placeholder="Editora" required value="<%= livro.editora %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="ano">Ano da edição</label>
+                            <input class="form-control" type="number" pattern="[0-9]+$" id="ano" name="ano"
+                                placeholder="Nano do edição" required value="<%= livro.ano %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantidade">Quantidade</label>
+                            <input class="form-control" type="number" pattern="[0-9]+$" id="quantidade" name="quantidade"
+                                placeholder="Quantidade de livros" required value="<%= livro.quantidade %>">
+                        </div>
+                        <div id="dialog_erro" class="alert alert-warning alert-dismissible fade show text-center"
+                            role="alert" style="display: none;">
+                            <p>
+                                Por favor, verifique os campos em vermelho e tente novamente.
+                            </p>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div id="dialog_sucesso" class="alert alert-success alert-dismissible fade show text-center"
+                            role="alert" style="display: none;">
+                            <p>
+                                Editado com sucesso.
+                            </p>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                                onclick="refre">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </form>
+                    <% }) %>
+
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+<%- include('../partials/footer'); %>
