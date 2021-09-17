@@ -9,10 +9,14 @@ input[type=number] {
     appearance: textfield;
 }
 /* Geral */
+* {
+    font-size: 18px;
+}
 
 main {
     min-height: 75vh;
+    
 }
-
+ 
 
 

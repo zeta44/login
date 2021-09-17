@@ -1,8 +1,8 @@
 <%- include('../partials/header'); %>
 
 <main>
-    <section class="container-fluid">
-        <div class="container my-5">
+    <section class="container">
+        <div class="my-5">
             <form action="/login" method="POST">
                 <div>
                     <% if (error) { %>
@@ -23,7 +23,7 @@
                         placeholder="Enter your password" required />
                 </div>
                 <div>
-                    <input class="btn btn-light" type="submit" value="Login" />
+                    <input class="btn btn-success" type="submit" value="Login" />
                 </div>
             </form>
         </div>

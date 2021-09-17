@@ -236,7 +236,7 @@ app.get("/deletar/:id",  isLoggedIn, (req, res) => {
         if (err) {
             return res.status(500).send("Erro ao excluir registro")
         } else {
-            res.redirect("pages/lista")
+            res.redirect("/lista")
         }
     });
 

@@ -1,64 +1,78 @@
 <%- include('../partials/header'); %>
 
-<main>
-    <section class="container my-5">
-        <div class="row">
-            <div class="col">
-                <h1>Cadastrar Livros</h1>
-                <form action="/cadastro" method="POST">
-                    <div class="form-group">
-                        <label for="titulo">Título</label>
-                        <input class="form-control" type="text" id="titulo" name="titulo" placeholder="Título do livro"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="autor">Autor</label>
-                        <input class="form-control" type="text" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
-                            id="autor" name="autor" placeholder="Autor do livro"
-                            pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="editora">Editora</label>
-                        <input class="form-control" type="text" id="editora" name="editora" placeholder="Editora"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="ano">Ano da edição</label>
-                        <input class="form-control" type="number" pattern="[0-9]+$" id="ano" name="ano"
-                            placeholder="Nano do edição" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="quantidade">Quantidade</label>
-                        <input class="form-control" type="number" pattern="[0-9]+$" id="quantidade" name="quantidade"
-                            placeholder="Quantidade de livros" required>
-                    </div>
-                    <div id="dialog_erro" class="alert alert-warning alert-dismissible fade show text-center"
-                        role="alert" style="display: none;">
-                        <p>
-                            Por favor, verifique os campos em vermelho e tente novamente.
-                        </p>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div id="dialog_sucesso" class="alert alert-success alert-dismissible fade show text-center"
-                        role="alert" style="display: none;">
-                        <p>
-                            Mensagem enviada com sucesso. Entraremos em contato em breve.
-                        </p>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="refre">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+    <main>
+        <% if(locals.user.classe==="admin" ) { %>
+            <section class="container my-5">
+                <div class="row">
+                    <div class="col">
+                        <h1>Cadastrar Livros</h1>
+                        <form action="/cadastro" method="POST">
+                            <div class="form-group">
+                                <label for="titulo">Título</label>
+                                <input class="form-control" type="text" id="titulo" name="titulo"
+                                    placeholder="Título do livro" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="autor">Autor</label>
+                                <input class="form-control" type="text"
+                                    pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" id="autor" name="autor"
+                                    placeholder="Autor do livro" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editora">Editora</label>
+                                <input class="form-control" type="text" id="editora" name="editora"
+                                    placeholder="Editora" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ano">Ano da edição</label>
+                                <input class="form-control" type="number" pattern="[0-9]+$" id="ano" name="ano"
+                                    placeholder="Nano do edição" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantidade">Quantidade</label>
+                                <input class="form-control" type="number" pattern="[0-9]+$" id="quantidade"
+                                    name="quantidade" placeholder="Quantidade de livros" required>
+                            </div>
+                            <div id="dialog_erro" class="alert alert-warning alert-dismissible fade show text-center"
+                                role="alert" style="display: none;">
+                                <p>
+                                    Por favor, verifique os campos em vermelho e tente novamente.
+                                </p>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div id="dialog_sucesso" class="alert alert-success alert-dismissible fade show text-center"
+                                role="alert" style="display: none;">
+                                <p>
+                                    Mensagem enviada com sucesso. Entraremos em contato em breve.
+                                </p>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                                    onclick="refre">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" onclick="enviar_dados()">Enviar</button>
+                        </form>
+
                     </div>
 
-                    <button type="submit" class="btn btn-primary" onclick="enviar_dados()">Enviar</button>
-                </form>
+                </div>
 
-            </div>
+            </section>
+            <% } else { %>
+                <div class="container my-5">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h1 class="display-5">Usuário sem autorização.</h1>
+                        </div>
+                        
+                    </div>  
+                </div>
+                <% } %>
 
-        </div>
+    </main>
 
-    </section>
-</main>
-
-<%- include('../partials/footer'); %>
+    <%- include('../partials/footer'); %>

@@ -68,20 +68,19 @@
                                     </td>
                                     <% if(locals.user.classe === "admin") { %>
                                     <td>
-                                        
                                         <a class="btn btn-warning" href="editar/<%=livro._id %>"><i
                                                 class="ico icofont-edit"></i></a>
                                         <!-- Botão para acionar modal -->
                                         <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#ExemploModalCentralizado">
+                                            data-target="#modal<%=livro._id %>">
                                             <i class="ico icofont-bin"></i>
                                         </button>
-                                        <% } %> 
+                                    <% } %> 
                                         
                                     </td>
                                 </tr>
                                 <!-- Modal -->
-                                <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="modal<%=livro._id %>" tabindex="-1" role="dialog"
                                     aria-labelledby="TituloModalCentralizado" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -100,7 +99,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Fechar</button>
                                                 <a class="btn btn-danger"
-                                                    href="/deletar/<%=livro._id %>">Deletar</a>
+                                                    href="deletar/<%=livro._id %>">Deletar</a>
                                             </div>
                                         </div>
                                     </div>
